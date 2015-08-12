@@ -1,0 +1,50 @@
+angular.module('bookManagerApp', []).controller('bookCtrl', function($scope, $http) {
+	$http.get("http://localhost:9000/books").success(function(response) {
+		$scope.books = response;
+	});
+	$scope.title = '';
+	$scope.author = '';
+	$scope.creatOn = '';
+	$scope.content = '';
+	/*$scope.books = [
+					{id:1, title:'Hege',  author:"Pege" },
+					{id:2, title:'Kim',   author:"Pim" },
+					{id:3, title:'Sal',   author:"Smith" },
+					{id:4, title:'Jack',  author:"Jones" },
+					{id:5, title:'John',  author:"Doe" },
+					{id:6, title:'Peter', author:"Pan" }
+					];*/
+	$scope.edit = true;
+	$scope.error = false;
+	$scope.incomplete = false;
+
+	$scope.editBook = function(id) {
+		if (id == 'new') {
+			$scope.edit = true;
+			$scope.incomplete = true;
+			$scope.title = '';
+			$scope.author = '';
+		} else {
+			$scope.edit = false;
+			$scope.title = $scope.books[id-1].title;
+			$scope.author = $scope.books[id-1].author;
+		}
+	};
+
+	$scope.$watch('creatOn',function() {$scope.test();});
+	$scope.$watch('content',function() {$scope.test();});
+	$scope.$watch('title', function() {$scope.test();});
+	$scope.$watch('author', function() {$scope.test();});
+
+	$scope.test = function() {
+		/*if ($scope.creatOn !== $scope.content) {
+			$scope.error = true;
+		} else {
+			$scope.error = false;
+		}*/
+		$scope.incomplete = false;
+		if ($scope.edit && (!$scope.title.length || !$scope.author.length ||	!$scope.creatOn.length || !$scope.content.length)) {
+			$scope.incomplete = true;
+		}
+	};
+});

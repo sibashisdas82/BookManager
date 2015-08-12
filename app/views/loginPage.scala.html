@@ -1,0 +1,36 @@
+@()
+
+@template() {
+	<div class="container">
+		<div class="alert alert-info" data-ng-show="isMsg">
+			<p>{{ loginMessage }}</p>
+		</div>
+		
+		<h3>Login</h3>
+		<form class="form-horizontal" name="loginForm" novalidate>
+			<div class="form-group">
+		  		<label class="col-sm-2 control-label">User Id:</label>
+		  		<div class="col-sm-10">
+					<input type="text" name="uid" data-ng-model="userId" placeholder="User name" required/>
+					<span style="color:red" data-ng-show="loginForm.uid.$dirty && loginForm.uid.$invalid">
+						<span data-ng-show="loginForm.uid.$error.required">User name is required!</span>
+					</span>
+		  		</div>
+			</div>
+			<div class="form-group">
+		  		<label class="col-sm-2 control-label">Password:</label>
+		  		<div class="col-sm-10">
+					<input type="password" name="password" data-ng-model="password" placeholder="Password"/>
+					<span style="color:red" data-ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+						<span data-ng-show="loginForm.password.$error.required">Password is required.</span>
+					</span>
+		  		</div>
+			</div>
+
+			<hr>
+			<button class="btn btn-success" data-ng-click="loginAuth()" data-ng-disabled="error || incomplete">
+				<span class="glyphicon glyphicon-log-in"></span> Login
+			</button>
+		</form>
+	</div>
+}

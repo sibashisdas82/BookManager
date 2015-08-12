@@ -1,0 +1,41 @@
+@(message: String)
+
+<button class="btn btn-success" data-ng-click="editBook('new')">
+	<span class="glyphicon glyphicon-user"></span> Create New User
+</button>
+<hr>
+
+<h3 data-ng-show="edit">Create New Book:</h3>
+<h3 data-ng-hide="edit">Edit Book:</h3>
+
+<form class="form-horizontal">
+	<div class="form-group">
+  		<label class="col-sm-2 control-label">Book Title:</label>
+  		<div class="col-sm-10">
+    		<input type="text" data-ng-model="title" data-ng-disabled="!edit" placeholder="Book Title">
+  		</div>
+	</div>
+	<div class="form-group">
+  		<label class="col-sm-2 control-label">Author Name:</label>
+  		<div class="col-sm-10">
+    		<input type="text" data-ng-model="author" data-ng-disabled="!edit" placeholder="Author Name">
+  		</div>
+	</div>
+	<div class="form-group">
+  		<label class="col-sm-2 control-label">Date:</label>
+  		<div class="col-sm-10">
+    		<input type="text" data-ng-model="creatOn" placeholder="Created On">
+  		</div>
+	</div>
+	<div class="form-group">
+  		<label class="col-sm-2 control-label">Content:</label>
+  		<div class="col-sm-10">
+    		<textarea data-ng-model="content" placeholder="Book Content"/>
+  		</div>
+	</div>
+</form>
+
+<hr>
+<button class="btn btn-success" data-ng-disabled="error || incomplete">
+	<span class="glyphicon glyphicon-save"></span> Save Changes
+</button>
